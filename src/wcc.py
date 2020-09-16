@@ -29,7 +29,7 @@ def read_op():
 		while True:
 			className = input("[INFO] 请输入课程名:\n>>> ")
 			if className in areaOfClass.keys():
-				print(f'{className}: {areaOfClass[className]}')
+				print(f'======================================= {className}: {areaOfClass[className]}')
 			else:
 				print(f'{className}并非通选课，或者课程名称有误！如果你确定{className}是通选课，欢迎发表issue！')
 	elif opInt == 2:

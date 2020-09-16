@@ -24,11 +24,14 @@ def read_op():
 		if opInt < 1 or opInt > 2:
 			raise '[ERROR] 请输入1|2！'
 	except:
-		raise '[ERROR] 请输入数字!'
+		raise '[ERROR] 请输入正确的数字!'
 	if opInt == 1:
 		while True:
 			className = input("[INFO] 请输入课程名:\n>>> ")
-			print(f'{className}: {areaOfClass[className]}')
+			if className in areaOfClass.keys():
+				print(f'{className}: {areaOfClass[className]}')
+			else:
+				print(f'{className}并非通选课，或者课程名称有误！如果你确定{className}是通选课，欢迎发表issue！')
 	elif opInt == 2:
 		areaID = input("[INFO] 请输入领域名称(A|B|C|D|E|F):\n>>> ")
 		if areaID in ("A", "B", "C", "D", "E", "F"):

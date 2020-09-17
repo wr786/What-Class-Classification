@@ -39,7 +39,7 @@ def read_op():
 				print(className)
 			print(f"[INFO] 以上即为分类{areaID}的所有课程.")
 	elif opInt == 3:
-		with open('classes.csv', 'r') as f:
+		with open('classes.csv', 'r', encoding='gbk') as f:
 			for className in f.read().splitlines():
 				if className in areaOfClass.keys():
 					print(f'======================================= {className}: {areaOfClass[className]}')

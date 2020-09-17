@@ -1,5 +1,6 @@
 classOfArea = {}
 areaOfClass = {}
+creditOfClass = {}
 
 def init():
 	with open('./data/infoText', 'r', encoding='utf-8') as f:
@@ -7,6 +8,7 @@ def init():
 		for line in data[1:]:
 			cells = line.split()
 			areaOfClass.update({cells[2]: cells[5]})
+			creditOfClass.update({cells[2]: cells[3]})
 			for area in cells[5].replace("，艺美", "").split('、'):
 				if area not in classOfArea.keys():
 					classOfArea.update({area: [cells[2]]})
@@ -15,7 +17,7 @@ def init():
 		return
 	raise '[ERROR] 请检查同目录下是否存在data/infoText!'
 
-def art():
+def art_cls_manip():
 	for name in areaOfClass.keys():
 		if '，艺美' in areaOfClass[name]:
 			areaOfClass[name]=areaOfClass[name].replace("，艺美"," (艺美)")
@@ -41,7 +43,7 @@ def read_op():
 				if className=='#':
 					break
 				elif className in areaOfClass.keys():
-					print(f'======================================= {className}: {areaOfClass[className]}')
+					print(f'======================================= {className}: {areaOfClass[className]}; {creditOfClass[className]}学分')
 				else:
 					print(f'[ERROR] {className}并非通选课.')
 		elif opInt == 2:
@@ -64,7 +66,7 @@ def read_op():
 			with open('classes.csv', 'r', encoding='gbk') as f:
 				for className in f.read().splitlines():
 					if className in areaOfClass.keys():
-						print(f'======================================= {className}: {areaOfClass[className]}')
+						print(f'======================================= {className}: {areaOfClass[className]}; {creditOfClass[className]}学分')
 					else:
 						print(f'[ERROR] {className}并非通选课.')
 		else:
@@ -72,5 +74,5 @@ def read_op():
 
 if __name__ == '__main__':
 	init()
-	art()
+	art_cls_manip()
 	read_op()

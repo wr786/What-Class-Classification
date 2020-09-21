@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         在成绩查询中直接显示通选课的类别！
 // @namespace    https://wr786.github.io/
-// @version      0.0.6
+// @version      0.0.9
 // @description  release version
 // @author       wr786
 // @match        *://pkuhelper.pku.edu.cn/my_score/*
@@ -52,13 +52,16 @@ function addCourseArea() {
                 		console.log(courseName + ': ' + courseTypeSuffix.join());
                 		courseInfo.childNodes[1].firstChild.nodeValue = courseType + '通选类别: ' + courseTypeSuffix;
                 	} else {	// 再判断一下英语课类别
+                		var courseTypeSuffix = [];
                 		if(typeA_EN.indexOf(courseName) != -1) courseTypeSuffix.push('A');
                 		if(typeB_EN.indexOf(courseName) != -1) courseTypeSuffix.push('B');
                 		if(typeC_EN.indexOf(courseName) != -1) courseTypeSuffix.push('C');
                 		if(typeD_EN.indexOf(courseName) != -1) courseTypeSuffix.push('C+');
-                		console.log(courseName + ': ' + courseTypeSuffix.join());
-                		courseInfo.childNodes[1].firstChild.nodeValue = courseType + '英语课类别: ' + courseTypeSuffix;
-                	}
+                		if(courseTypeSuffix.join()) {
+                			console.log(courseName + ': ' + courseTypeSuffix.join());
+                			courseInfo.childNodes[1].firstChild.nodeValue = courseType + '英语课类别: ' + courseTypeSuffix;
+                		}
+	            	}
                 }
             }
 		})

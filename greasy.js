@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         在成绩查询中直接显示通选课的类别！
 // @namespace    https://wr786.github.io/
-// @version      0.0.5
+// @version      0.0.6
 // @description  release version
 // @author       wr786
 // @match        *://pkuhelper.pku.edu.cn/my_score/*
@@ -29,6 +29,12 @@ function addCourseArea() {
 		var typeE = ['音乐与数学','现当代建筑赏析','汉语修辞学','世界电影史','英语新闻阅读','民俗学','小说的艺术','鲁迅小说研究','中国现代文学名著研究','中文工具书及古代典籍概要','《论语》、《孟子》导读','台湾文学','老舍与现代中国文化','中国古籍入门','中国古代文学经典（一）','中国古代文学经典（二）','大学国文','中国现代文学经典选讲','唐宋诗词名篇精读(一)','国学经典讲论','古代小说名著导读','影片精读','文学概论','民俗研究','二战以来影视中的两岸关系','艺术史','美学原理','基督教和中国文化','东正教艺术','美国文化与社会','中国名著导读','视觉圣经--西方艺术中的基督教','东方文学史','泰戈尔导读','古代东方文明','日本文化艺术专题','东南亚文化','中日文化交流史','印度宗教','德语名家中国著述选读','禅与园林艺术','传记文学：经典人物研究','西方文学名著导读','俄罗斯艺术史','中俄文化交流史','欧洲文学选读','圣经释读','莎士比亚名篇赏析','西方音乐欣赏','中国美术史','经典昆曲欣赏','浪漫主义时代的欧洲音乐','影视鉴赏','艺术与审美','基本乐理与管弦乐基础','中外名曲赏析','中国电影史','中国流行音乐流变','中国美术概论','西方歌剧简史与名作赏析','西方美术史'];
 		var typeEMT = ['音乐与数学','现当代建筑赏析','世界电影史','影片精读','东正教艺术','视觉圣经--西方艺术中的基督教','日本文化艺术专题','禅与园林艺术','俄罗斯艺术史','西方音乐欣赏','中国美术史','经典昆曲欣赏','浪漫主义时代的欧洲音乐','影视鉴赏','艺术与审美','基本乐理与管弦乐基础','中外名曲赏析','中国电影史','中国流行音乐流变','中国美术概论','西方歌剧简史与名作赏析','西方美术史'];
 
+		var typeA_EN = ['语音与听说词汇','英语阅读','英语听说','实用基础英语写作'];
+		var typeB_EN = ['高级英语听说','高级英语阅读','高级英语写作','高级英语口语','英语词汇的意义与用法','英语词汇与英美文化','英语名著与电影','英美戏剧和电影','美国短篇小说与电影','英美短篇小说赏析','汉英翻译：理论与实践','影视中的英美文化','当代英美纪录片中的中国文化和社会','英美戏剧概况','博雅英语阅读','美国文化概览','希腊罗马神话赏析','英语创意表述-TED 演讲视听说'];
+		var typeC_EN = ['美国重要历史文献选读','西方文化选读','英美经典散文节选阅读','英国传统诗歌精华','语言、文化与交际','美国政治制度','英语语境中的中国历史与文化','英语非虚构作品中的近当代中国社会与文化','商务沟通与表达','学术英语阅读','英汉名作名译研读','经典英美诗歌翻译与鉴赏','西方人文英语','学术英语听说','科技前沿英语','语言、技术与社会','学术英语写作','新西兰历史与文化'];
+		var typeD_EN = ['批判性思维与学术写作'];
+
+
 		semester.childNodes.forEach(function(course) {
 			if(course.className == 'course-row') {
                 var courseInfo = course.firstElementChild.childNodes[1].firstChild.firstChild;
@@ -45,6 +51,13 @@ function addCourseArea() {
                 		if(typeEMT.indexOf(courseName) != -1) courseTypeSuffix.push('(艺美)');
                 		console.log(courseName + ': ' + courseTypeSuffix.join());
                 		courseInfo.childNodes[1].firstChild.nodeValue = courseType + '通选类别: ' + courseTypeSuffix;
+                	} else {	// 再判断一下英语课类别
+                		if(typeA_EN.indexOf(courseName) != -1) courseTypeSuffix.push('A');
+                		if(typeB_EN.indexOf(courseName) != -1) courseTypeSuffix.push('B');
+                		if(typeC_EN.indexOf(courseName) != -1) courseTypeSuffix.push('C');
+                		if(typeD_EN.indexOf(courseName) != -1) courseTypeSuffix.push('C+');
+                		console.log(courseName + ': ' + courseTypeSuffix.join());
+                		courseInfo.childNodes[1].firstChild.nodeValue = courseType + '英语课类别: ' + courseTypeSuffix;
                 	}
                 }
             }

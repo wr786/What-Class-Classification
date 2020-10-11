@@ -1,5 +1,5 @@
 # What-Class-Classification
- 便捷地辨别北京大学通选课程类别
+ 便捷地辨别北京大学通选课程类别！
 
 效果展示：[树洞#1673516](http://pkuhelper.pku.edu.cn/hole/#1673516)
 
@@ -9,7 +9,7 @@
 
 ### Update
 
-1. 修复了《中俄文化交流史》的课程类别。[Issue](https://github.com/wr786/What-Class-Classification/issues/1)
+1. 修复了《中俄文化交流史》的课程类别。[Issue#1](https://github.com/wr786/What-Class-Classification/issues/1)
 
 ### Usage
 

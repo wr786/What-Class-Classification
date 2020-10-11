@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         在成绩查询中直接显示通选课的类别！
 // @namespace    https://wr786.github.io/
-// @version      0.0.10
+// @version      0.0.11
 // @description  release version
 // @author       wr786
 // @match        *://pkuhelper.pku.edu.cn/my_score/*

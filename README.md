@@ -24,7 +24,7 @@
 
 - 如果您查询的通选课被显示为`并非通选课`，而您确定这门课就是通选课的话，欢迎提交issue！
 
-- `./index.html`为网页版，具有更好的UI。可以[点此直达](https://wr786.github.io/wcc/)若您在校园网内，可以使用加载速度更快的版本：[点此直达](http://wr786.top/wcc/)
+- `./docs/index.html`为网页版，具有更好的UI。可以[点此直达](https://wr786.github.io/wcc/)若您在校园网内，可以使用加载速度更快的版本：[点此直达](http://wr786.top/wcc/)
 
   
 

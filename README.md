@@ -10,5 +10,5 @@
 
 ### Usage
 
-- 等我公众号写好了再填（）
+- 详见[该推送](https://mp.weixin.qq.com/s/pey6Y2QyboGn8gdHnADnpg)
 

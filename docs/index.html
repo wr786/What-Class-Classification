@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  	<title>What Class Classification | wr786</title>
+  	<link rel="icon" href="./images/avatar/avatar.jpg" sizes="32x32">
+	<link href="./css/semantic.css" rel="stylesheet" type="text/css">
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css'>
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/semantic.js"></script>
+	<script src="./js/vue.js"></script>	
+	<style>
+		body {
+			margin: 0px;
+			padding: 0px;
+			overflow-x: hidden;
+			min-width: 320px;
+			background: #FFFFFF;
+			font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+			font-size: 14px;
+			line-height: 1.4285em;
+			color: rgba(0, 0, 0, 0.87);
+			background-color: #1f1e33;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="ui middle aligned center aligned grid">
+		<div class="column">
+			<div class="ui huge inverted header">
+				<h1 style="font-size: 2em;">What Class Classification</h1>
+			</div>
+			
+			<div class="content">
+				<a class="ui purple image label" href="https://github.com/wr786/What-Class-Classification" target="_blank"><img src="./images/avatar/avatar.jpg">wr786</a>
+			</div>
+			
+			<div class="content">
+				<a class="ui orange image label" href="https://greasyfork.org/zh-CN/scripts/411567" target="_blank"><img src="./images/icons/tampermonkey.png">点击获取脚本</a>
+			</div>
+
+			<div class="ui huge search" id="quickSearch">
+				<div class="ui icon input">
+					<input class="prompt" type="text" placeholder="查找你想知道的通选课...">
+					<i class="search icon"></i>
+				</div>
+				<div class="results"></div>
+			</div>
+			<div class="textarea"></div>
+			
+		</div>
+	</div>
+
+	<script>
+		// 懒得改了
+		var content = [
+			{title:'古今数学思想A' },
+			{title:'数值方法:原理、算法及应用A' },
+			{title:'普通统计学A' },
+			{title:'音乐与数学A、E (艺美)' },
+			{title:'面向复杂性的系统思维F' },
+			{title:'演示物理学A' },
+			{title:'人类生存发展与核科学A' },
+			{title:'可再生能源与低碳社会A、F' },
+			{title:'自然科学中的混沌和分形A' },
+			{title:'大气概论A' },
+			{title:'理论物理导论A' },
+			{title:'物理宇宙学基础A' },
+			{title:'纳米科学前沿A' },
+			{title:'今日物理A' },
+			{title:'公共物理学A' },
+			{title:'今日新材料A' },
+			{title:'功能化学A' },
+			{title:'魅力化学A' },
+			{title:'化学与社会A' },
+			{title:'大学化学A' },
+			{title:'普通生物学实验A' },
+			{title:'生物进化论A' },
+			{title:'人类的性、生育与健康A' },
+			{title:'保护生物学A' },
+			{title:'普通生物学（B）A' },
+			{title:'普通生物学（A）A' },
+			{title:'太空探索A' },
+			{title:'地球与空间A' },
+			{title:'矿产资源经济概论A、F' },
+			{title:'自然资源与社会发展A、F' },
+			{title:'地球历史概要A' },
+			{title:'地震概论A' },
+			{title:'地史中的生命A' },
+			{title:'地球环境与人类社会A、F' },
+			{title:'世界文化地理A、B' },
+			{title:'现当代建筑赏析E (艺美)' },
+			{title:'中国历史地理A、D' },
+			{title:'自然保护学A、F' },
+			{title:'生态学导论A、F' },
+			{title:'中国自然地理A' },
+			{title:'社会心理学(B)C' },
+			{title:'组织管理心理学C' },
+			{title:'爱的心理学C' },
+			{title:'大学生心理健康C' },
+			{title:'心理学概论A、C' },
+			{title:'广告学概论B' },
+			{title:'中国图书出版史D' },
+			{title:'汉语修辞学E' },
+			{title:'世界电影史D、E (艺美)' },
+			{title:'跨文化交流学B' },
+			{title:'英语新闻阅读E' },
+			{title:'影像与社会B' },
+			{title:'影像与中国社会（英文）B' },
+			{title:'民俗学E' },
+			{title:'小说的艺术E' },
+			{title:'鲁迅小说研究E' },
+			{title:'中国现代文学名著研究E' },
+			{title:'中文工具书及古代典籍概要E' },
+			{title:'《论语》、《孟子》导读E' },
+			{title:'台湾文学E' },
+			{title:'老舍与现代中国文化E' },
+			{title:'中国古籍入门E' },
+			{title:'中国古代文学经典（一）E' },
+			{title:'中国古代文学经典（二）E' },
+			{title:'大学国文E' },
+			{title:'中国现代文学经典选讲E' },
+			{title:'唐宋诗词名篇精读(一)E' },
+			{title:'国学经典讲论E' },
+			{title:'古代小说名著导读E' },
+			{title:'影片精读E (艺美)' },
+			{title:'文学概论E' },
+			{title:'民俗研究E' },
+			{title:'中华人民共和国史专题D' },
+			{title:'中华民国史专题D' },
+			{title:'中国古代史（上）D' },
+			{title:'中国古代史（下）D' },
+			{title:'中国通史（近代部分）D' },
+			{title:'世界通史（上）D' },
+			{title:'世界通史（下）D' },
+			{title:'基督教文明史D' },
+			{title:'18-19历史学系' },
+			{title:'中国古代政治与文化D' },
+			{title:'二十世纪中外关系史D' },
+			{title:'欧洲文艺复兴D' },
+			{title:'二十世纪世界史D' },
+			{title:'西方文明史导论D' },
+			{title:'人类发展与环境变迁D、F' },
+			{title:'欧洲启蒙运动D' },
+			{title:'中国传统官僚政治制度D' },
+			{title:'二战以来影视中的两岸关系D、E' },
+			{title:'近现代中日关系史D' },
+			{title:'埃及学专题D' },
+			{title:'中世纪西欧社会史D' },
+			{title:'美国史通论D' },
+			{title:'西方文化通论D' },
+			{title:'当代印度史D' },
+			{title:'拉美国家现代化进程研究D' },
+			{title:'战后东亚政治发展B、D' },
+			{title:'日本及日本人论B、D' },
+			{title:'伊斯兰教与现代世界D' },
+			{title:'西方当代历史学流派D' },
+			{title:'大国崛起D' },
+			{title:'中国近代政治与外交D' },
+			{title:'文艺复兴经典名著选读D' },
+			{title:'韩国史通论D' },
+			{title:'艺术史D、E' },
+			{title:'印度文明史D' },
+			{title:'中国通史（古代部分）D' },
+			{title:'秦汉魏晋南北朝政治历程D' },
+			{title:'古希腊罗马历史经典D' },
+			{title:'中国近代思想史D' },
+			{title:'中国现代社会史D' },
+			{title:'明清经济与社会B、D' },
+			{title:'中国古代妇女史专题D' },
+			{title:'罗马史D' },
+			{title:'中国古代物质文化史D' },
+			{title:'世界遗产概论D、F' },
+			{title:'考古学与古史重建D' },
+			{title:'哲学导论C' },
+			{title:'逻辑导论C' },
+			{title:'现代西方哲学C' },
+			{title:'科学哲学导论C' },
+			{title:'伦理学导论C' },
+			{title:'美学原理C、E' },
+			{title:'宗教学导论C' },
+			{title:'美国环境思想C' },
+			{title:'管理哲学B、C' },
+			{title:'西方美学史C' },
+			{title:'中国美学史C' },
+			{title:'悖论研究C' },
+			{title:'逻辑与批判性思维C' },
+			{title:'印度佛教史C' },
+			{title:'基督教和中国文化C、E' },
+			{title:'东正教艺术C、E (艺美)' },
+			{title:'道教史C、D' },
+			{title:'西方政治思想（中世纪）C' },
+			{title:'西方政治思想（中世纪）讨论班C' },
+			{title:'西方政治思想（现代）C' },
+			{title:'佛教导论C' },
+			{title:'坛经C' },
+			{title:'中国佛教史C、D' },
+			{title:'分析哲学概论C' },
+			{title:'现代中国的建立：制度、思潮与人物C' },
+			{title:'政治哲学C' },
+			{title:'西方政治思想（古代）C' },
+			{title:'近代西方哲学C' },
+			{title:'环境伦理学C' },
+			{title:'中国古代思想世界C' },
+			{title:'西方哲学史C' },
+			{title:'庄子哲学C' },
+			{title:'孔子与老子C' },
+			{title:'《四书》精读C' },
+			{title:'文学与伦理C' },
+			{title:'世界文明中的科学技术C、D' },
+			{title:'尼采《查拉图斯特拉如是说》C' },
+			{title:'西方思想经典（一）C' },
+			{title:'西方思想经典（二）C' },
+			{title:'西方思想经典(三)C' },
+			{title:'哲学与人生C' },
+			{title:'美国文化与社会B、E' },
+			{title:'中国政治概论B' },
+			{title:'中国边疆问题概论B' },
+			{title:'亚太概论B' },
+			{title:'世界政治中的民族问题B' },
+			{title:'中东：政治、社会与文化B' },
+			{title:'中东地区的国家关系B' },
+			{title:'晚清对外关系的历史与人物B、D' },
+			{title:'国际关系与东亚安全B' },
+			{title:'中苏关系及其对中国社会发展的影响B' },
+			{title:'台湾政治概论B' },
+			{title:'当代国际政治B' },
+			{title:'伊斯兰与世界政治B' },
+			{title:'微观经济学B' },
+			{title:'宏观经济学B' },
+			{title:'外国经济史B、D' },
+			{title:'中华人民共和国经济史B、D' },
+			{title:'经济学原理（I）B' },
+			{title:'经济学原理（Ⅱ）B' },
+			{title:'公共经济学B' },
+			{title:'中国经济思想史B、D' },
+			{title:'中国经济导论B' },
+			{title:'社会企业家精神培养实验B' },
+			{title:'风险管理与保险B' },
+			{title:'管理学B' },
+			{title:'营销学原理B' },
+			{title:'金融学概论B' },
+			{title:'微观经济学B' },
+			{title:'外国刑法B' },
+			{title:'外国宪法B' },
+			{title:'心理卫生学概论C' },
+			{title:'法学流派与思潮B' },
+			{title:'犯罪通论B' },
+			{title:'国际人权法B' },
+			{title:'刑法学B' },
+			{title:'英美侵权法B' },
+			{title:'法律导论B' },
+			{title:'中国文化史D' },
+			{title:'广告学概论B' },
+			{title:'中国名著导读E' },
+			{title:'电子资源的检索与利用A' },
+			{title:'视觉圣经--西方艺术中的基督教E (艺美)' },
+			{title:'社会性别研究B' },
+			{title:'教育社会学思考B' },
+			{title:'人类学导论B' },
+			{title:'社会学导论B' },
+			{title:'民族与社会B' },
+			{title:'自杀社会问题研究B' },
+			{title:'生物学对社会科学的启示B' },
+			{title:'人口资源环境社会学B、F' },
+			{title:'中国社会：结构与变迁B' },
+			{title:'政治学原理B' },
+			{title:'日本经济B' },
+			{title:'东方文学史E' },
+			{title:'泰戈尔导读E' },
+			{title:'古代东方文明D、E' },
+			{title:'日本文化艺术专题E (艺美)' },
+			{title:'圣经概述和导读B' },
+			{title:'东南亚文化E' },
+			{title:'中日文化交流史D、E' },
+			{title:'印度宗教E' },
+			{title:'阿拉伯伊斯兰文化C' },
+			{title:'德语名家中国著述选读E' },
+			{title:'禅与园林艺术E (艺美)' },
+			{title:'传记文学：经典人物研究E' },
+			{title:'西方文学名著导读E' },
+			{title:'俄罗斯艺术史E (艺美)' },
+			{title:'中俄文化交流史E' },
+			{title:'欧洲文学选读E' },
+			{title:'圣经释读E' },
+			{title:'莎士比亚名篇赏析E' },
+			{title:'周易精读C' },
+			{title:'奥林匹克文化B' },
+			{title:'西方音乐欣赏E (艺美)' },
+			{title:'中国美术史D、E (艺美)' },
+			{title:'经典昆曲欣赏E (艺美)' },
+			{title:'浪漫主义时代的欧洲音乐E (艺美)' },
+			{title:'影视鉴赏E (艺美)' },
+			{title:'艺术与审美E (艺美)' },
+			{title:'基本乐理与管弦乐基础E (艺美)' },
+			{title:'中外名曲赏析E (艺美)' },
+			{title:'中国电影史D、E (艺美)' },
+			{title:'中国流行音乐流变E (艺美)' },
+			{title:'中国美术概论E (艺美)' },
+			{title:'西方歌剧简史与名作赏析E (艺美)' },
+			{title:'西方美术史D、E (艺美)' },
+			{title:'学术规范与论文写作B' },
+			{title:'数字化艺术A' },
+			{title:'微电子学概论A' },
+			{title:'社会科学中的计算思维方法A、B' },
+			{title:'经济学原理B' },
+			{title:'博弈与社会B' },
+			{title:'海洋科学导论A' },
+			{title:'人类生存发展与环境保护A、F' },
+			{title:'全球环境问题A、F' },
+			{title:'环境科学导论A、F' },
+			{title:'环境材料导论A、F' },
+			{title:'环境伦理概论A、F' },
+			{title:'当代国防B' },
+			{title:'孙子兵法导读B' },
+			{title:'中医养生学A' },
+			{title:'医学发展概论A' },
+			{title:'健康的生活方式与健康传播B' },
+			{title:'金庸小说研究E' }
+		];
+
+		$('#quickSearch').search({source: content});
+
+	</script>
+</body>
+</html>

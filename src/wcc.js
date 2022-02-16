@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         在成绩查询中直接显示通选课的类别！
 // @namespace    https://wr786.github.io/
-// @version      0.1.0
-// @description  release version
+// @version      0.1.1
+// @description  upd patch for new score page
 // @author       wr786
 // @match        *://pkuhelper.pku.edu.cn/my_score/*
 // @grant        none
+// @license MIT
 // @run-at document-start
 // ==/UserScript==
 
@@ -42,7 +43,7 @@ function addCourseArea() {
                 if(courseInfo.firstChild.firstChild.nodeValue == null) {
                     var courseName = courseInfo.firstChild.firstChild.firstChild.nextSibling.nodeValue;
                     var courseType = courseInfo.childNodes[1].firstChild.nodeValue;
-                    if(courseType.indexOf('通选课') != -1) {
+                    if(courseType.indexOf('任选') != -1) {
                         var courseTypeSuffix = [];
                         if(typeA.indexOf(courseName) != -1) courseTypeSuffix.push('A');
                         if(typeB.indexOf(courseName) != -1) courseTypeSuffix.push('B');
@@ -51,8 +52,10 @@ function addCourseArea() {
                         if(typeE.indexOf(courseName) != -1) courseTypeSuffix.push('E');
                         if(typeEMT.indexOf(courseName) != -1) courseTypeSuffix.push('(艺美)');
                         if(typeF.indexOf(courseName) != -1) courseTypeSuffix.push('F');
-                        console.log(courseName + ': ' + courseTypeSuffix.join());
-                        courseInfo.childNodes[1].firstChild.nodeValue = courseType + '通选类别: ' + courseTypeSuffix;
+                        if(courseTypeSuffix.join()) {
+                            console.log(courseName + ': ' + courseTypeSuffix.join());
+                            courseInfo.childNodes[1].firstChild.nodeValue = courseType + '通选类别: ' + courseTypeSuffix;
+                        }
                     } else {    // 再判断一下英语课类别
                         var courseTypeSuffix = [];
                         if(typeA_EN.indexOf(courseName) != -1) courseTypeSuffix.push('A');

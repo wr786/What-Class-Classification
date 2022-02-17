@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         在成绩查询中直接显示通选课的类别！
 // @namespace    https://wr786.github.io/
-// @version      0.1.1
+// @version      0.1.2
 // @description  upd patch for new score page
 // @author       wr786
 // @match        *://pkuhelper.pku.edu.cn/my_score/*
@@ -43,7 +43,7 @@ function addCourseArea() {
                 if(courseInfo.firstChild.firstChild.nodeValue == null) {
                     var courseName = courseInfo.firstChild.firstChild.firstChild.nextSibling.nodeValue;
                     var courseType = courseInfo.childNodes[1].firstChild.nodeValue;
-                    if(courseType.indexOf('任选') != -1) {
+                    if(courseType.indexOf('任选') != -1 || courseType.indexOf('通选课') != -1) {
                         var courseTypeSuffix = [];
                         if(typeA.indexOf(courseName) != -1) courseTypeSuffix.push('A');
                         if(typeB.indexOf(courseName) != -1) courseTypeSuffix.push('B');
